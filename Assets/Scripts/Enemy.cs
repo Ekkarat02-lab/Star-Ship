@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
     public float objectSpeed = 0.5f;
     public float SecondsUntilDestroy = 2.5f;
     float startTime;
-    GameSystem gameSystem;
+    GameManager gameSystem;
 
     void Start()
     {
@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour
         if (gameSystem == null)
         {
             GameObject _gameSystem = GameObject.FindGameObjectWithTag("GameController") as GameObject;
-            gameSystem = _gameSystem.GetComponent<GameSystem>();
+            gameSystem = _gameSystem.GetComponent<GameManager>();
         }
     }
 

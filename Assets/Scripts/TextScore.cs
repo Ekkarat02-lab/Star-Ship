@@ -5,12 +5,12 @@ using UnityEngine.UI;
 public class TextScore : MonoBehaviour
 {
     Text txt_score;
-    public GameSystem gameSystem;
+    public GameManager gameSystem;
     void Start()
     {
         if(gameSystem == null){
             GameObject _gameSystem = GameObject.FindGameObjectWithTag("GameController") as GameObject;
-            gameSystem = _gameSystem.GetComponent<GameSystem>();
+            gameSystem = _gameSystem.GetComponent<GameManager>();
         }
         txt_score = GetComponent<Text>();
     }
