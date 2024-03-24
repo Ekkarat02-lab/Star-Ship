@@ -32,12 +32,7 @@ public class laser : MonoBehaviour
       laserLight.enabled = false;
       canFire = true;
    }
-
-   /*private void Update()
-   {
-      Debug.DrawRay(transform.position,transform.TransformDirection(Vector3.forward) * maxDirtance, Color.green);
-   }*/
-
+   
    Vector3 CastRay()
    {
       RaycastHit hit;
@@ -47,29 +42,54 @@ public class laser : MonoBehaviour
       {
          Debug.Log("We hit : "+ hit.transform.name);
          
-         Explosion temp = hit.transform.GetComponent<Explosion>();
-         if(temp != null)
-            temp.IveBeenHit(hit.point);
+         SpawnExplosion(hit.point, hit.transform);
          
          return hit.point;
       }
-      
       Debug.Log("We missed...");
+      
       return transform.position + (transform.forward * maxDirtance);
    }
+
+   void SpawnExplosion(Vector3 hitPosition, Transform target)
+   {
+      // Check if the target has the Enemy tag
+      if (target.CompareTag("Enemy"))
+      {
+         // Destroy the enemy game object
+         Destroy(target.gameObject);
+      }
+      
+      Explosion temp = target.GetComponent<Explosion>();
+      if (temp != null)
+         temp.AddForce(hitPosition, transform);
+
+   }
+   
    public void FireLaser()
+   {
+      Vector3 pos = CastRay();
+      FireLaser(pos);
+
+   }
+
+   public void FireLaser(Vector3 targetPosition, Transform target = null)
    {
       if (canFire)
       {
+         if (target != null)
+         {
+            SpawnExplosion(targetPosition, target);
+            
+         }
          lr.SetPosition(0, transform.position);
-         lr.SetPosition(1, CastRay());
+         lr.SetPosition(1, targetPosition);
          lr.enabled = true;
          laserLight.enabled = true;
          canFire = false;
          Invoke("TurnOffLaser", laserOffTime);
          Invoke("CanFire", fireDelay);
       }
-      
    }
 
    void TurnOffLaser()

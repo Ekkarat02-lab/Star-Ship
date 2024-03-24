@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d5331fa3a0836c34b9539414827f58ee
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4263
+  packageName: Space Bomber
+  packageVersion: 1.0
+  assetPath: Assets/Space Bomber/Materials/1K_BomberTXTR.mat
+  uploadId: 26812

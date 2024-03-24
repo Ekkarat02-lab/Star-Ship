@@ -137,3 +137,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 8197181972344122091, guid: c80e57513c56804459edd12727a66d47, type: 3}
+  rigidbody: {fileID: 0}
+  shield: {fileID: 2893172933401758853, guid: 8482d3909cd16c74ba1ed02a1d6b9e6b, type: 3}
+  laserHitModifier: 100
