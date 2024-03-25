@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class Asteroidmanager : MonoBehaviour
 {
     [SerializeField] private List<Asteroid> asteroids = new List<Asteroid>();
     [SerializeField] private int numberOfAsteroidsOnAnAxis = 10;
     [SerializeField] private int gridSpacing = 100;
+    [SerializeField] private Vector3 maxScale = new Vector3(5f, 5f, 5f); // ขนาดสูงสุดของ Asteroid ในแต่ละแกน
+    [SerializeField] private Vector3 minScale = new Vector3(1f, 1f, 1f); // ขนาดต่ำสุดของ Asteroid ในแต่ละแกน
 
     private void Start()
     {
@@ -26,8 +27,13 @@ public class Asteroidmanager : MonoBehaviour
         Vector3 position = new Vector3(transform.position.x + (x * gridSpacing) + AsteroidOffset(), 
             transform.position.y + (y * gridSpacing) + AsteroidOffset(),
             transform.position.z + (z * gridSpacing) + AsteroidOffset()); 
+
+        Vector3 scale = new Vector3(Random.Range(minScale.x, maxScale.x),
+            Random.Range(minScale.y, maxScale.y),
+            Random.Range(minScale.z, maxScale.z));
+
         Asteroid newAsteroid = Instantiate(asteroids[Random.Range(0, asteroids.Count)], position, Quaternion.identity, transform);
-        // สุ่ม Asteroid จาก List และสร้างใหม่
+        newAsteroid.transform.localScale = scale; // กำหนดขนาดของ Asteroid จากการสุ่ม
     }
 
     private float AsteroidOffset()

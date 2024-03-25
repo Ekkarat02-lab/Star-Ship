@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
+using UnityEngine.UI;
 
-[DisallowMultipleComponent]
 [RequireComponent(typeof(Light))]
 [RequireComponent(typeof(LineRenderer))]
 public class laser : MonoBehaviour
@@ -17,8 +16,9 @@ public class laser : MonoBehaviour
    private Light laserLight;
    
    private bool canFire;
-
    
+   [SerializeField] private Text scoreText;
+   private int points = 0;
    
    private void Awake()
    {
@@ -26,12 +26,16 @@ public class laser : MonoBehaviour
       laserLight = GetComponent<Light>();
    }
 
-   private void Start()
+   void Start()
    {
       lr.enabled = false;
       laserLight.enabled = false;
       canFire = true;
+    
+      // Call UpdateScoreText to initialize the score text
+      UpdateScoreText();
    }
+
    
    Vector3 CastRay()
    {
@@ -58,8 +62,13 @@ public class laser : MonoBehaviour
       {
          // Destroy the enemy game object
          Destroy(target.gameObject);
+        
+         // Increase points by 1
+         points++;
+         // Update the score text
+         UpdateScoreText();
       }
-      
+    
       Explosion temp = target.GetComponent<Explosion>();
       if (temp != null)
          temp.AddForce(hitPosition, transform);
@@ -107,4 +116,18 @@ public class laser : MonoBehaviour
    {
       canFire = true;
    }
+   
+   void UpdateScoreText()
+   {
+      scoreText.text = "point : " + points.ToString();
+
+      // Check if points equal to 10
+      if (points == 10)
+      {
+         // Display "Winner" on the scene
+         Debug.Log("Winner");
+      }
+   }
+
+
 }
