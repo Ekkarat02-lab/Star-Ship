@@ -9,16 +9,6 @@ public class MainMenu : MonoBehaviour
    {
       SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
    }
-
-   public void credit()
-   {
-      SceneManager.LoadScene("credit");
-   }
-   
-   public void HowToplay()
-   {
-      SceneManager.LoadScene("How To Play");
-   }
    
    public void QuitGame()
    {
