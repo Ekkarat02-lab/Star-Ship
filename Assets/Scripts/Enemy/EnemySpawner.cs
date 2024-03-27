@@ -1,24 +1,30 @@
 using UnityEngine;
+using System.Collections;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField]private GameObject enemyPrefab; // กำหนด gameobject ที่ต้องการสร้าง
-    public int numberOfEnemies; // จำนวน gameobject ที่ต้องการสร้าง
-
+    [SerializeField] private GameObject enemyPrefab; // กำหนด gameobject ที่ต้องการสร้าง
     public float spawnRadius = 10f; // รัศมีสุ่มตำแหน่ง
+    public float spawnInterval = 10f; // ช่วงเวลาการสร้างศัตรูใหม่
 
     void Start()
     {
-        SpawnEnemies();
+        StartCoroutine(SpawnEnemyRoutine());
     }
 
-    void SpawnEnemies()
+    IEnumerator SpawnEnemyRoutine()
     {
-        for (int i = 0; i < numberOfEnemies; i++)
+        while (true)
         {
-            Vector3 randomPosition = GetRandomPosition();
-            Instantiate(enemyPrefab, randomPosition, Quaternion.identity);
+            SpawnEnemy();
+            yield return new WaitForSeconds(spawnInterval); // รอเวลาตามช่วงเวลาที่กำหนด
         }
+    }
+
+    void SpawnEnemy()
+    {
+        Vector3 randomPosition = GetRandomPosition();
+        Instantiate(enemyPrefab, randomPosition, Quaternion.identity);
     }
 
     Vector3 GetRandomPosition()

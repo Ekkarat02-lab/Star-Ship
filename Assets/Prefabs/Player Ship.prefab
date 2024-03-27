@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 8651857936879101745}
   - component: {fileID: 5004653007813375177}
   - component: {fileID: 7403005563421596319}
-  - component: {fileID: 2893172933401758853}
   m_Layer: 0
   m_Name: Player Ship
   m_TagString: Player
@@ -109,22 +108,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 8197181972344122091, guid: c80e57513c56804459edd12727a66d47, type: 3}
   rigidbody: {fileID: 5296542695316314825}
-  shield: {fileID: 2893172933401758853}
+  shield: {fileID: 0}
   laserHitModifier: 50
---- !u!114 &2893172933401758853
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3656474828006653816}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 681bd91b552c6d2439e84aca2fa429ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 10
-  healthText: {fileID: 0}
 --- !u!1 &6984691062943877579
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,7 +266,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 8197181972344122091, guid: c80e57513c56804459edd12727a66d47, type: 3}
   rigidbody: {fileID: 5296542695316314825}
-  shield: {fileID: 2893172933401758853}
+  shield: {fileID: 0}
   laserHitModifier: 50
 --- !u!1 &8706924831702615675
 GameObject:
@@ -331,7 +316,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 8197181972344122091, guid: c80e57513c56804459edd12727a66d47, type: 3}
   rigidbody: {fileID: 5296542695316314825}
-  shield: {fileID: 2893172933401758853}
+  shield: {fileID: 0}
   laserHitModifier: 50
 --- !u!1001 &1792411897003335471
 PrefabInstance:
@@ -416,7 +401,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 8197181972344122091, guid: c80e57513c56804459edd12727a66d47, type: 3}
   rigidbody: {fileID: 5296542695316314825}
-  shield: {fileID: 2893172933401758853}
+  shield: {fileID: 0}
   laserHitModifier: 50
 --- !u!4 &1792411897003722159 stripped
 Transform:

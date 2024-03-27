@@ -342,9 +342,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 340c6cf2625df424caa8052305733505, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minScale: 2.4
-  maxScale: 8
-  RotationOffset: 100
+  minMoveSpeed: 2
+  maxMoveSpeed: 5
+  minMoveDistance: 5
+  maxMoveDistance: 10
+  minRotationSpeed: 20
+  maxRotationSpeed: 100
+  minScale: 3
+  maxScale: 15
 --- !u!114 &860985601330363341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -359,7 +364,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 8197181972344122091, guid: c80e57513c56804459edd12727a66d47, type: 3}
   rigidbody: {fileID: 0}
-  shield: {fileID: 0}
   laserHitModifier: 100
 --- !u!1 &176588
 GameObject:

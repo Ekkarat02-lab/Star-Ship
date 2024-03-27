@@ -8,8 +8,6 @@ public class Explosion : MonoBehaviour
 
     [SerializeField] private Rigidbody rigidbody;
 
-    [SerializeField] private Shield shield;
-
     [SerializeField] private float laserHitModifier = 100f;
     
     void IveBeenHit(Vector3 pos)
