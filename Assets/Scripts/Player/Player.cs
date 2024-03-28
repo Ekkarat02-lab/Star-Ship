@@ -1,3 +1,5 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [DisallowMultipleComponent]
@@ -11,6 +13,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         myT = transform;
+        Debug.Log("We spin around");
     }
 
     private void Update()
@@ -26,6 +29,7 @@ public class Player : MonoBehaviour
         float roll = turnSpeed * Time.deltaTime * Input.GetAxis("Roll");
         
         myT.Rotate(-pitch, yaw,-roll);
+        
     }
 
     void Thrust()
@@ -36,4 +40,14 @@ public class Player : MonoBehaviour
         }
 
     }
+
+    /*private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Asteroid"))
+        {
+            gameObject.active = false;
+        }
+    }*/
+    
+    
 }

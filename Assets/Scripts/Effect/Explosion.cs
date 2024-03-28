@@ -14,13 +14,17 @@ public class Explosion : MonoBehaviour
     {
         GameObject go = Instantiate(explosion, pos, Quaternion.identity, transform)as GameObject;
         Destroy(go,6f);
+        //Debug.Log("We spin around");
         
     }
 
     void OnCollisionEnter(Collision collision)
     {
         foreach (ContactPoint contact in collision.contacts)
+        {
             IveBeenHit(contact.point);
+        }
+        
     }
     
     public void AddForce(Vector3 hitPosition, Transform hitSource)
@@ -32,5 +36,6 @@ public class Explosion : MonoBehaviour
 
         Vector3 forceVector3 = (hitSource.position - hitPosition).normalized;
         rigidbody.AddForceAtPosition(forceVector3 * laserHitModifier, hitPosition, ForceMode.Impulse);
+        
     }
 }

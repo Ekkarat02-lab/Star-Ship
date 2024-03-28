@@ -14,7 +14,8 @@ public class laser : MonoBehaviour
     private bool canFire;
     [SerializeField] private Text scoreText;
     private int points = 0;
-
+    [SerializeField] private Canvas winnerCanvas;
+    [SerializeField] private Player player;
     private void Awake()
     {
         lr = GetComponent<LineRenderer>();
@@ -41,7 +42,7 @@ public class laser : MonoBehaviour
             SpawnExplosion(hit.point, hit.transform);
             return hit.point;
         }
-        Debug.Log("We missed...");
+        //Debug.Log("We missed...");
 
         return transform.position + (transform.forward * maxDirtance);
     }
@@ -55,11 +56,20 @@ public class laser : MonoBehaviour
             UpdateScoreText();
         }
 
-        Explosion temp = target.GetComponent<Explosion>();
+        /*Explosion temp = target.GetComponent<Explosion>();
         if (temp != null)
+        {
             temp.AddForce(hitPosition, transform);
+            UpdateScoreText();
+        }*/
+
+        if(points >= 1)
+        {
+            player.enabled = false;
+            Debug.Log($"{points}");
+            winnerCanvas.gameObject.active = true;
+        }
         
-        UpdateScoreText();
     }
 
     public void FireLaser()
