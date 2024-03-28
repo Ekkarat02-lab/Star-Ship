@@ -63,7 +63,7 @@ public class laser : MonoBehaviour
             UpdateScoreText();
         }*/
 
-        if(points >= 1)
+        if(points >= 3)
         {
             player.enabled = false;
             Debug.Log($"{points}");
