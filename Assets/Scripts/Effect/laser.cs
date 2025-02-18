@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +18,13 @@ public class laser : MonoBehaviour
     private int points = 0;
     [SerializeField] private Canvas winnerCanvas;
     [SerializeField] private Player player;
+    [SerializeField] private float countdownTime = 10f; // เวลานับถอยหลัง
+    [SerializeField] private Text timerText;
+    private float remainingTime;
+    private bool isCountingDown = false;
+    private List<int> shotPoints = new List<int>(); // บันทึกคะแนนในแต่ละครั้งที่ยิงได้
+
+    
     private void Awake()
     {
         lr = GetComponent<LineRenderer>();
@@ -27,8 +36,28 @@ public class laser : MonoBehaviour
         lr.enabled = false;
         laserLight.enabled = false;
         canFire = true;
+        remainingTime = countdownTime;
+        isCountingDown = true;
 
         UpdateScoreText();
+        UpdateTimerText();
+    }
+    
+    void Update()
+    {
+        if (isCountingDown)
+        {
+            remainingTime -= Time.deltaTime;
+            UpdateTimerText();
+
+            if (remainingTime <= 0)
+            {
+                isCountingDown = false;
+                player.enabled = false;
+                Debug.Log("หมดเวลา!");
+                winnerCanvas.gameObject.SetActive(true);
+            }
+        }
     }
     
     Vector3 CastRay()
@@ -53,23 +82,14 @@ public class laser : MonoBehaviour
         {
             Destroy(target.gameObject);
             points++;
+            shotPoints.Add(points); // เก็บคะแนนที่ยิงได้ในแต่ละครั้ง
             UpdateScoreText();
         }
+    }
 
-        /*Explosion temp = target.GetComponent<Explosion>();
-        if (temp != null)
-        {
-            temp.AddForce(hitPosition, transform);
-            UpdateScoreText();
-        }*/
-
-        if(points >= 3)
-        {
-            player.enabled = false;
-            Debug.Log($"{points}");
-            winnerCanvas.gameObject.active = true;
-        }
-        
+    void UpdateTimerText()
+    {
+        timerText.text = "Time: " + Mathf.Max(0, Mathf.CeilToInt(remainingTime)).ToString();
     }
 
     public void FireLaser()
